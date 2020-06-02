@@ -1,16 +1,17 @@
-import { Status, Rule } from "../types/index";
+import { Status, Rule } from '../types/index';
 
 export const validate = (value: string, rules: Rule[]): Status => {
   for (const rule of rules) {
-    if (!rule.validator(value).valid) {
+    const { valid, message } = rule.validator(value);
+    if (!valid) {
       return {
         valid: false,
-        message: rule.message
-      }
+        message: message,
+      };
     }
   }
 
   return {
-    valid: true
-  }
+    valid: true,
+  };
 };

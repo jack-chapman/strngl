@@ -1,0 +1,44 @@
+# Strngl
+
+Composable string validation!
+
+A pretty neat way to validate the content of strings. Use the validators Strngl comes with, or add your own. Strngl is written in Typescript and comes with full type definitions.
+
+## Basic usage
+
+```js
+import { validate, required, hasMinMax } from 'strngl';
+
+const { valid, message } = validate(someUnknownValue, [
+  required(),
+  hasMinMax({ min: 5, max: 10 }),
+]);
+
+if (!valid) {
+  console.error(`The input is invalid: ${message}!`);
+}
+```
+
+## Adding your own validators
+
+```js
+import { validate } from 'strngl';
+
+const startsWith = character => {
+  return {
+    validator(value) {
+      if (value.charAt(0) !== character) {
+        return {
+          valid: false,
+          message: `Must begin with ${character}`
+        }
+      }
+      return {
+        valid: true
+      }
+    }
+  }
+}
+
+const { valid } = validate(someString, [ startsWith('A') ]);
+```

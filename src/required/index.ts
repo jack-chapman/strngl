@@ -1,19 +1,18 @@
-import { Rule } from '../types/index'
-import { isEmpty } from '../utils/isEmpty'
+import { Rule } from '../types/index';
+import { isEmpty } from '../utils/isEmpty';
 
 export const required = (): Rule => {
   return {
-    message: 'Required',
-    validator (value) {
+    validator(value) {
       if (value !== '' && !isEmpty(value)) {
         return {
-          valid: true
-        }
+          valid: true,
+        };
       }
       return {
         valid: false,
-        message: 'Required'
-      }
-    }
-  }
-}
+        message: 'Required',
+      };
+    },
+  };
+};
