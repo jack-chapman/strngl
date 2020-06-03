@@ -1,14 +1,21 @@
 import { Rule } from '../types/index';
 import { isEmpty } from '../utils/isEmpty';
 
-export const startsWith = (character: string): Rule => {
+export const startsWithChar = (character: string): Rule => {
   return {
     validator(value) {
-      const inputsEmpty = isEmpty(value) || isEmpty(character);
-      if (inputsEmpty) {
+      const noChar = isEmpty(character);
+      if (noChar) {
         return {
           valid: false,
           message: 'Validation rules invalid',
+        };
+      }
+      const noInput = isEmpty(value);
+      if (noInput) {
+        return {
+          valid: false,
+          message: `No input value`,
         };
       }
       const noMatch = value.charAt(0) !== character;

@@ -1,6 +1,7 @@
 import { validate } from './index';
 import { required } from '../required/index';
-import { startsWith } from '../startsWith/index';
+import { startsWithChar } from '../startsWithChar/index';
+import { endsWithChar } from '../endsWithChar/index';
 
 describe('validate', () => {
   test('with required, valid', () => {
@@ -16,23 +17,43 @@ describe('validate', () => {
     expect(message).toBe('Required');
   });
 
-  test('with startsWith, valid', () => {
-    const { valid } = validate('test', [startsWith('t')]);
+  test('with startsWithChar, valid', () => {
+    const { valid } = validate('test', [startsWithChar('t')]);
 
     expect(valid).toBe(true);
   });
 
-  test('with startsWith, failing options', () => {
-    const { valid, message } = validate('', [startsWith('o')]);
+  test('with startsWithChar, failing options', () => {
+    const { valid, message } = validate('', [startsWithChar('o')]);
 
     expect(valid).toBe(false);
-    expect(message).toBe('Validation rules invalid');
+    expect(message).toBe('No input value');
   });
 
-  test('with startsWith, failing', () => {
-    const { valid, message } = validate('p', [startsWith('o')]);
+  test('with startsWithChar, failing', () => {
+    const { valid, message } = validate('p', [startsWithChar('o')]);
 
     expect(valid).toBe(false);
     expect(message).toBe('Must begin with o');
+  });
+
+  test('with endsWithChar, valid', () => {
+    const { valid } = validate('test', [endsWithChar('t')]);
+
+    expect(valid).toBe(true);
+  });
+
+  test('with endsWithChar, failing options', () => {
+    const { valid, message } = validate('', [endsWithChar('o')]);
+
+    expect(valid).toBe(false);
+    expect(message).toBe('No input value');
+  });
+
+  test('with endsWithChar, failing', () => {
+    const { valid, message } = validate('p', [endsWithChar('o')]);
+
+    expect(valid).toBe(false);
+    expect(message).toBe('Must end with o');
   });
 });
