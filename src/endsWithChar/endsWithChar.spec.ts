@@ -1,27 +1,39 @@
-import { endsWithChar } from './index'
+import { endsWithChar } from './index';
 
-describe('Starts with', () => {
+describe('Ends with char', () => {
   test('undefined inputs', () => {
-    expect(endsWithChar(undefined).validator(undefined).valid).toBe(false)
-  })
+    const { valid, message } = endsWithChar(undefined).validator(undefined);
+    expect(valid).toBe(false);
+    expect(message).toBe('No input value');
+  });
 
   test('null inputs', () => {
-    expect(endsWithChar(null).validator(null).valid).toBe(false)
-  })
+    const { valid, message } = endsWithChar(null).validator(null);
+    expect(valid).toBe(false);
+    expect(message).toBe('No input value');
+  });
 
-  test('empty inputs', () => {
-    expect(endsWithChar('').validator('').valid).toBe(false)
-  })
+  test('empty rule options', () => {
+    const { valid, message } = endsWithChar(undefined).validator('A');
+    expect(valid).toBe(false);
+    expect(message).toBe('Rule options invalid');
+  });
 
   test('validate B against A', () => {
-    expect(endsWithChar('A').validator('B').valid).toBe(false)
-  })
+    const { valid, message } = endsWithChar('A').validator('B');
+    expect(valid).toBe(false);
+    expect(message).toBe('Must end with [A]');
+  });
 
   test('validate A against A', () => {
-    expect(endsWithChar('A').validator('A').valid).toBe(true)
-  })
+    const { valid, message } = endsWithChar('A').validator('A');
+    expect(valid).toBe(true);
+    expect(message).toBeUndefined();
+  });
 
-  test('validate A against Apple', () => {
-    expect(endsWithChar('e').validator('Apple').valid).toBe(true)
-  })
-})
+  test('validate e against Apple', () => {
+    const { valid, message } = endsWithChar('e').validator('Apple');
+    expect(valid).toBe(true);
+    expect(message).toBeUndefined();
+  });
+});

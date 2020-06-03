@@ -1,27 +1,39 @@
 import { startsWithChar } from './index'
 
-describe('Starts with', () => {
+describe('Starts with char', () => {
   test('undefined inputs', () => {
-    expect(startsWithChar(undefined).validator(undefined).valid).toBe(false)
-  })
+    const { valid, message } = startsWithChar(undefined).validator(undefined);
+    expect(valid).toBe(false);
+    expect(message).toBe('No input value');
+  });
 
   test('null inputs', () => {
-    expect(startsWithChar(null).validator(null).valid).toBe(false)
-  })
+    const { valid, message } = startsWithChar(null).validator(null);
+    expect(valid).toBe(false);
+    expect(message).toBe('No input value');
+  });
 
-  test('empty inputs', () => {
-    expect(startsWithChar('').validator('').valid).toBe(false)
-  })
+  test('empty rule options', () => {
+    const { valid, message } = startsWithChar(undefined).validator('A');
+    expect(valid).toBe(false);
+    expect(message).toBe('Rule options invalid');
+  });
 
   test('validate B against A', () => {
-    expect(startsWithChar('A').validator('B').valid).toBe(false)
-  })
+    const { valid, message } = startsWithChar('A').validator('B');
+    expect(valid).toBe(false);
+    expect(message).toBe('Must begin with [A]');
+  });
 
   test('validate A against A', () => {
-    expect(startsWithChar('A').validator('A').valid).toBe(true)
-  })
+    const { valid, message } = startsWithChar('A').validator('A');
+    expect(valid).toBe(true);
+    expect(message).toBeUndefined();
+  });
 
   test('validate A against Apple', () => {
-    expect(startsWithChar('A').validator('Apple').valid).toBe(true)
-  })
+    const { valid, message } = startsWithChar('A').validator('Apple');
+    expect(valid).toBe(true);
+    expect(message).toBeUndefined();
+  });
 })

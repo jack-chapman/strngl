@@ -1,28 +1,22 @@
 import { Rule } from '../types/index';
-import { isEmpty } from '../utils/isEmpty';
+import { isEmpty, noInputStatus, invalidOptionsStatus } from '../utils/index';
 
 export const startsWithChar = (character: string): Rule => {
   return {
     validator(value) {
-      const noChar = isEmpty(character);
-      if (noChar) {
-        return {
-          valid: false,
-          message: 'Validation rules invalid',
-        };
-      }
       const noInput = isEmpty(value);
       if (noInput) {
-        return {
-          valid: false,
-          message: `No input value`,
-        };
+        return noInputStatus();
+      }
+      const noChar = isEmpty(character);
+      if (noChar) {
+        return invalidOptionsStatus();
       }
       const noMatch = value.charAt(0) !== character;
       if (noMatch) {
         return {
           valid: false,
-          message: `Must begin with ${character}`,
+          message: `Must begin with [${character}]`,
         };
       }
       return {
