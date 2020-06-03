@@ -1,6 +1,6 @@
 {
   "name": "strngle",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Composable string validation!",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -8,12 +8,18 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "url": "https://github.com/jack-chapman/strngle"
+  },
   "scripts": {
     "test": "jest",
-    "build": "rollup --config"
+    "build": "rollup --config",
+    "prepublish": "rollup --config"
   },
   "keywords": [
-    "validate"
+    "validate",
+    "strings",
+    "esmodule"
   ],
   "author": "Jack Chapman",
   "license": "MIT",
