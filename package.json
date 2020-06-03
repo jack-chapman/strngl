@@ -8,6 +8,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "repository": {
     "url": "https://github.com/jack-chapman/strngle"
   },
