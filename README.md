@@ -4,6 +4,22 @@ Composable string validation!
 
 A pretty neat way to validate the content of strings. Use the validators Strngle comes with, or add your own. Strngle is written in Typescript and comes with full type definitions.
 
+Docs will be added eventually.
+
+## Installation
+
+npm:
+
+```bash
+npm i strngle
+```
+
+yarn:
+
+```bash
+yarn add strngle
+```
+
 ## Basic usage
 
 ```js
