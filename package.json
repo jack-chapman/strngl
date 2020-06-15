@@ -1,6 +1,6 @@
 {
   "name": "strngle",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Composable string validation!",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
