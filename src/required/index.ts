@@ -4,7 +4,7 @@ import { isEmpty } from '../utils/index';
 export const required = (): Rule => {
   return {
     validator(value) {
-      if (!isEmpty(value)) {
+      if (!isEmpty(value) && value !== '') {
         return {
           valid: true,
         };

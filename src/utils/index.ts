@@ -1,7 +1,7 @@
 import { Status } from '../types/index';
 
 export const isEmpty = (value: string): boolean => {
-  return value === undefined || value === null || value === '';
+  return value === undefined || value === null;
 };
 
 export const isUndefined = (value: any): boolean => {
