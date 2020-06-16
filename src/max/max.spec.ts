@@ -1,63 +1,63 @@
-import { min } from './index';
+import { max } from './index';
 
-describe('min', () => {
+describe('max', () => {
   test('undefined inputs', () => {
-    const { valid, message } = min(undefined).validator(undefined);
+    const { valid, message } = max(undefined).validator(undefined);
     expect(valid).toBe(false);
     expect(message).toBe('No input value');
   });
 
   test('null inputs', () => {
-    const { valid, message } = min(null).validator(null);
+    const { valid, message } = max(null).validator(null);
     expect(valid).toBe(false);
     expect(message).toBe('No input value');
   });
 
   test('invalid rule input', () => {
-    const { valid, message } = min(undefined).validator('a');
+    const { valid, message } = max(undefined).validator('a');
     expect(valid).toBe(false);
     expect(message).toBe('Rule options invalid');
   });
 
   test('zero size', () => {
-    const { valid, message } = min(0).validator('');
+    const { valid, message } = max(0).validator('');
     expect(valid).toBe(true);
     expect(message).toBe(undefined);
   });
 
   test('one size, passing', () => {
-    const { valid, message } = min(1).validator('a');
+    const { valid, message } = max(1).validator('a');
     expect(valid).toBe(true);
     expect(message).toBe(undefined);
   });
 
   test('two size, failing', () => {
-    const { valid, message } = min(2).validator('a');
+    const { valid, message } = max(2).validator('aaa');
     expect(valid).toBe(false);
-    expect(message).toBe('Must have length greater than or equal to [2]');
+    expect(message).toBe('Must have length less than or equal to [2]');
   });
 
   test('five size, passing', () => {
-    const { valid, message } = min(5).validator('aaaaaa');
+    const { valid, message } = max(5).validator('aaaaa');
     expect(valid).toBe(true);
     expect(message).toBe(undefined);
   });
 
   test('five size, failing', () => {
-    const { valid, message } = min(5).validator('aaaa');
+    const { valid, message } = max(5).validator('aaaaaa');
     expect(valid).toBe(false);
-    expect(message).toBe('Must have length greater than or equal to [5]');
+    expect(message).toBe('Must have length less than or equal to [5]');
   });
 
-  test('exlusive, passing', () => {
-    const { valid, message } = min(5, false).validator('aaaaaa');
+  test('exclusive, passing', () => {
+    const { valid, message } = max(5, false).validator('aaaa');
     expect(valid).toBe(true);
     expect(message).toBe(undefined);
   })
 
-  test('exlusive, failing', () => {
-    const { valid, message } = min(5, false).validator('aaaaa');
+  test('exclusive, failing', () => {
+    const { valid, message } = max(5, false).validator('aaaaa');
     expect(valid).toBe(false);
-    expect(message).toBe('Must have length greater than [5]');
+    expect(message).toBe('Must have length less than [5]');
   })
 });

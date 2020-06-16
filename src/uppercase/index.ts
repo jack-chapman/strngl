@@ -7,26 +7,28 @@ import {
   invalidOptionsStatus,
 } from '../utils/index';
 
-export const min = (size: number, inclusive = true): Rule => {
+export const uppercase = (strict = false): Rule => {
   return {
     validator(value) {
       const noInput = isEmpty(value);
       if (noInput) {
         return noInputStatus();
       }
-      if (isUndefined(size) || isNull(size)) {
+      if (isUndefined(strict) || isNull(strict)) {
         return invalidOptionsStatus();
       }
-      if (inclusive && value.length < size) {
+      const hasUppercaseOnly = !/[^A-Z]/.test(value)
+      const hasSomeUppercase = /[A-Z]/.test(value)
+      if (strict && !hasUppercaseOnly) {
         return {
           valid: false,
-          message: `Must have length greater than or equal to [${size}]`,
+          message: 'Must contain only uppercase characters',
         };
       }
-      if (!inclusive && value.length <= size) {
+      if (!strict && !hasSomeUppercase) {
         return {
           valid: false,
-          message: `Must have length greater than [${size}]`,
+          message: 'Must contain at least one uppercase character',
         };
       }
       return {

@@ -7,7 +7,7 @@ import {
   invalidOptionsStatus,
 } from '../utils/index';
 
-export const min = (size: number, inclusive = true): Rule => {
+export const max = (size: number, inclusive = true): Rule => {
   return {
     validator(value) {
       const noInput = isEmpty(value);
@@ -17,16 +17,16 @@ export const min = (size: number, inclusive = true): Rule => {
       if (isUndefined(size) || isNull(size)) {
         return invalidOptionsStatus();
       }
-      if (inclusive && value.length < size) {
+      if (inclusive && value.length > size) {
         return {
           valid: false,
-          message: `Must have length greater than or equal to [${size}]`,
+          message: `Must have length less than or equal to [${size}]`,
         };
       }
-      if (!inclusive && value.length <= size) {
+      if (!inclusive && value.length >= size) {
         return {
           valid: false,
-          message: `Must have length greater than [${size}]`,
+          message: `Must have length less than [${size}]`,
         };
       }
       return {

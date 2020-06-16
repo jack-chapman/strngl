@@ -4,6 +4,8 @@ import { startsWithChar } from './startsWithChar/index'
 import { endsWithChar } from './endsWithChar/index'
 import { hasMinMax } from './hasMinMax/index'
 import { min } from './min/index'
+import { max } from './max/index'
+import { uppercase } from './uppercase/index'
 
 export {
   validate,
@@ -11,5 +13,7 @@ export {
   startsWithChar,
   endsWithChar,
   hasMinMax,
-  min
+  min,
+  max,
+  uppercase
 }
