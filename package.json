@@ -15,7 +15,9 @@
   "scripts": {
     "test": "jest",
     "build": "rollup --config",
-    "prepublish": "rollup --config"
+    "prepublish": "rollup --config",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "keywords": [
     "validate",
@@ -31,6 +33,7 @@
     "rollup": "^2.12.0",
     "ts-jest": "^26.1.0",
     "tslib": "^2.0.0",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.3",
+    "vuepress": "^1.5.2"
   }
 }
